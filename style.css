@@ -3,7 +3,7 @@
     --gold: #ffcc00;
     --red: #e63946;
     
-    /* Dark Theme Default Mapping Variables */
+    /* Dark Theme Token Mappings */
     --bg-main: #050505;
     --bg-nav: rgba(5, 5, 5, 0.95);
     --bg-card: #121212;
@@ -16,24 +16,31 @@
     --border-card: rgba(255, 255, 255, 0.08);
     --dock-bg: #111111;
     --dock-border: #262626;
-    --simmer-glow: rgba(255, 204, 0, 0.03);
+    
+    /* True Simmer Fluid Gradient Matrix Rules */
+    --simmer-base: #121212;
+    --simmer-glow: #1a1a1a;
+    --simmer-highlight: #242424;
 }
 
 [data-theme="light"] {
-    /* Light Theme Dynamic Alternative Mapping */
+    /* Light Theme Dynamic Alternative Token Mappings */
     --bg-main: #ffffff;
     --bg-nav: rgba(255, 255, 255, 0.95);
     --bg-card: #f1f3f5;
     --bg-card-inner: #ffffff;
-    --bg-light-sec: #e9ecef;
+    --bg-light-sec: #edf2f7;
     --text-primary: #050505;
     --text-inverse: #ffffff;
     --text-muted: #555555;
     --border-subtle: rgba(0, 0, 0, 0.08);
     --border-card: rgba(0, 0, 0, 0.12);
     --dock-bg: #eeeeee;
-    --dock-border: #cccccc;
-    --simmer-glow: rgba(255, 204, 0, 0.06);
+    --dock-border: #shadow;
+    
+    --simmer-base: #f1f3f5;
+    --simmer-glow: #e2e8f0;
+    --simmer-highlight: #cbd5e1;
 }
 
 * {
@@ -210,20 +217,32 @@ main {
     margin-bottom: 0;
 }
 
-/* CARDS CONTINUOUS SIMMERING GLOW ENGINE */
+/* DYNAMIC CONTINUOUS SIMMERING GLOW ENGINE */
 .simmer-effect {
-    position: relative;
-    overflow: hidden;
-    animation: ambientSimmer 4s ease-in-out infinite alternate;
+    background: linear-gradient(120deg, 
+        var(--simmer-base) 30%, 
+        var(--simmer-glow) 45%, 
+        var(--simmer-highlight) 50%, 
+        var(--simmer-glow) 55%, 
+        var(--simmer-base) 70%
+    ) !important;
+    background-size: 400% 100% !important;
+    animation: continuousSimmerTrace 4.5s cubic-bezier(0.25, 1, 0.5, 1) infinite, periodicPulseShadow 3s ease-in-out infinite alternate;
 }
 
-@keyframes ambientSimmer {
+/* Shift gradient position infinitely across the surface texture */
+@keyframes continuousSimmerTrace {
+    0% { background-position: 100% 0%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes periodicPulseShadow {
     0% {
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1), inset 0 0 0px var(--simmer-glow);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         border-color: var(--border-card);
     }
     100% {
-        box-shadow: 0 8px 25px rgba(255, 204, 0, 0.04), inset 0 0 12px var(--simmer-glow);
+        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.06);
         border-color: rgba(255, 204, 0, 0.25);
     }
 }
@@ -317,6 +336,13 @@ section {
     margin: 15px auto 0;
 }
 
+/* COMPACT FIX FOR THE THIRD IMAGE EMPTY SPACE */
+.section-compact {
+    padding-top: 50px !important;
+    padding-bottom: 55px !important;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
 .intro {
     max-width: 800px;
     margin: 0 auto;
@@ -379,31 +405,63 @@ section {
     line-height: 1.6;
 }
 
-/* PHASE ROLLOUT MAP TILES */
-.cities {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 20px;
-    margin-top: 50px;
+/* HORIZONTAL SCROLLING TAB FORMAT FOR CITIES */
+.scrolling-tabs-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 10px;
+    margin-top: 30px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-.cities div {
-    background-color: var(--bg-main);
-    border: 1px solid var(--border-card);
-    color: var(--text-primary);
-    padding: 20px;
+/* Hide navigation scrollbars while retaining full touch axis functionality */
+.scrolling-tabs-container::-webkit-scrollbar {
+    height: 6px;
+}
+.scrolling-tabs-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.scrolling-tabs-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+[data-theme="dark"] .scrolling-tabs-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.cities-tab-ribbon {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    padding-right: 20px; 
+}
+
+.tab-item {
+    background-color: #050505;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 36px;
     text-align: center;
     font-weight: 700;
-    font-size: 15px;
-    border-radius: 8px;
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s;
+    font-size: 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+    transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s;
 }
 
-.cities div:hover {
-    transform: translateY(-3px);
-    background-color: var(--text-primary);
-    color: var(--bg-main);
-    border-color: var(--text-primary);
+[data-theme="light"] .tab-item {
+    background-color: #ffffff;
+    color: #050505;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tab-item:hover {
+    transform: translateY(-2px);
+    background-color: var(--gold) !important;
+    color: #050505 !important;
+    border-color: var(--gold);
 }
 
 /* FINANCIAL SYSTEM PRESENTATION BLOCK */
@@ -514,7 +572,7 @@ section {
     color: var(--gold);
 }
 
-/* FOOTER ARCHITECTURE ARCHITECTURE */
+/* FOOTER ARCHITECTURE */
 .footer {
     background-color: var(--bg-main);
     border-top: 1px solid var(--border-subtle);
@@ -648,7 +706,7 @@ section {
     transform: translateX(0);
 }
 
-/* DOCK ACTIVE REACTION MODIFIERS - BACKGROUND TRANSFORM & ICON SHAKE */
+/* DOCK ACTIVE REACTION MODIFIERS */
 .floating-action-dock.bubble-shaking .whatsapp-item { background-color: #25D366; border-color: #25D366; }
 .floating-action-dock.bubble-shaking .email-item    { background-color: var(--red); border-color: var(--red); }
 .floating-action-dock.bubble-shaking .website-item  { background-color: var(--gold); border-color: var(--gold); }
@@ -658,7 +716,6 @@ section {
     animation: iconBubbleReaction 0.8s cubic-bezier(0.25, 0.8, 0.25, 1.25) both;
 }
 
-/* Cascaded timing loop profiles */
 .floating-action-dock.bubble-shaking .whatsapp-item .dock-icon { animation-delay: 0.0s; }
 .floating-action-dock.bubble-shaking .email-item .dock-icon    { animation-delay: 0.1s; }
 .floating-action-dock.bubble-shaking .website-item .dock-icon  { animation-delay: 0.2s; }
