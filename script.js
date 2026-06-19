@@ -2,13 +2,12 @@
 // Fuel By Willpower
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("RapidCharge Hub Loaded with Animations");
+    console.log("RapidCharge Hub Loaded with Live Action Dock");
 
-    // Dynamic Scroll-Driven Reveal Observer (Hardware-Accelerated)
+    // Dynamic Scroll-Driven Reveal Observer
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Introduce an incremental cascading fade effect for clean list presentation
                 setTimeout(() => {
                     entry.target.classList.add("reveal-active");
                 }, index * 40); 
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         rootMargin: "0px 0px -40px 0px"
     });
 
-    // Track targets across core components
     document.querySelectorAll(".scroll-animate").forEach(element => {
         revealObserver.observe(element);
     });
