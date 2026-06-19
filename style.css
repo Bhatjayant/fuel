@@ -3,12 +3,12 @@
     --gold: #ffcc00;
     --red: #e63946;
     
-    /* Dark Theme Token Mappings */
+    /* Dark Theme Default Mapping Variables */
     --bg-main: #050505;
     --bg-nav: rgba(5, 5, 5, 0.95);
     --bg-card: #121212;
     --bg-card-inner: #050505;
-    --bg-light-sec: #f8f9fa;
+    --bg-light-sec: #111111;
     --text-primary: #ffffff;
     --text-inverse: #050505;
     --text-muted: #aaaaaa;
@@ -17,30 +17,41 @@
     --dock-bg: #111111;
     --dock-border: #262626;
     
-    /* True Simmer Fluid Gradient Matrix Rules */
+    /* Simmer Fluid Base Color Tones */
     --simmer-base: #121212;
     --simmer-glow: #1a1a1a;
     --simmer-highlight: #242424;
+    
+    /* Cities Component Color Mappings */
+    --city-bg: #000000;
+    --city-text: #ffffff;
+    --city-border: rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="light"] {
-    /* Light Theme Dynamic Alternative Token Mappings */
+    /* High-Vibrancy Light Theme Alternative Mapping */
     --bg-main: #ffffff;
-    --bg-nav: rgba(255, 255, 255, 0.95);
-    --bg-card: #f1f3f5;
+    --bg-nav: rgba(255, 255, 255, 0.97);
+    --bg-card: #f8f9fa;
     --bg-card-inner: #ffffff;
-    --bg-light-sec: #edf2f7;
-    --text-primary: #050505;
+    --bg-light-sec: #ffffff;
+    --text-primary: #0a0a0a;
     --text-inverse: #ffffff;
-    --text-muted: #555555;
+    --text-muted: #4a4a4a;
     --border-subtle: rgba(0, 0, 0, 0.08);
     --border-card: rgba(0, 0, 0, 0.12);
-    --dock-bg: #eeeeee;
-    --dock-border: #shadow;
+    --dock-bg: #fdfdfd;
+    --dock-border: #dddddd;
     
-    --simmer-base: #f1f3f5;
-    --simmer-glow: #e2e8f0;
-    --simmer-highlight: #cbd5e1;
+    /* Enhanced Contrast Light Simmer Matrix */
+    --simmer-base: #f8f9fa;
+    --simmer-glow: #f1f3f5;
+    --simmer-highlight: #e9ecef;
+    
+    /* Brightened Variant Mappings */
+    --city-bg: #111111;
+    --city-text: #ffffff;
+    --city-border: var(--gold);
 }
 
 * {
@@ -217,7 +228,7 @@ main {
     margin-bottom: 0;
 }
 
-/* DYNAMIC CONTINUOUS SIMMERING GLOW ENGINE */
+/* CARDS CONTINUOUS SIMMERING GLOW ENGINE */
 .simmer-effect {
     background: linear-gradient(120deg, 
         var(--simmer-base) 30%, 
@@ -230,7 +241,6 @@ main {
     animation: continuousSimmerTrace 4.5s cubic-bezier(0.25, 1, 0.5, 1) infinite, periodicPulseShadow 3s ease-in-out infinite alternate;
 }
 
-/* Shift gradient position infinitely across the surface texture */
 @keyframes continuousSimmerTrace {
     0% { background-position: 100% 0%; }
     100% { background-position: 0% 0%; }
@@ -242,8 +252,8 @@ main {
         border-color: var(--border-card);
     }
     100% {
-        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.06);
-        border-color: rgba(255, 204, 0, 0.25);
+        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.08);
+        border-color: rgba(255, 204, 0, 0.35);
     }
 }
 
@@ -302,9 +312,14 @@ main {
     transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s;
 }
 
+[data-theme="light"] .cta-button {
+    background-color: #111111;
+    color: #ffffff;
+}
+
 .cta-button:hover {
-    background-color: var(--gold);
-    color: #050505;
+    background-color: var(--gold) !important;
+    color: #050505 !important;
     transform: translateY(-2px);
 }
 
@@ -315,7 +330,7 @@ section {
 
 .section-light {
     background-color: var(--bg-light-sec);
-    color: #050505;
+    color: var(--text-primary);
     transition: background-color 0.4s;
 }
 
@@ -332,15 +347,16 @@ section {
     display: block;
     width: 60px;
     height: 4px;
-    background-color: #050505;
+    background-color: var(--text-primary);
     margin: 15px auto 0;
 }
 
 /* COMPACT FIX FOR THE THIRD IMAGE EMPTY SPACE */
 .section-compact {
-    padding-top: 50px !important;
-    padding-bottom: 55px !important;
+    padding-top: 45px !important;
+    padding-bottom: 50px !important;
     border-bottom: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .intro {
@@ -351,10 +367,6 @@ section {
     font-weight: 500;
     line-height: 1.6;
     color: var(--text-muted);
-}
-
-[data-theme="light"] .intro {
-    color: #333333;
 }
 
 .section-dark {
@@ -405,63 +417,75 @@ section {
     line-height: 1.6;
 }
 
-/* HORIZONTAL SCROLLING TAB FORMAT FOR CITIES */
+/* MODERN INFINITE AUTOMATED CAROUSEL SCROLL ENGINE */
 .scrolling-tabs-container {
     width: 100%;
-    overflow-x: auto;
-    padding: 20px 10px;
-    margin-top: 30px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    margin-top: 25px;
 }
 
-/* Hide navigation scrollbars while retaining full touch axis functionality */
-.scrolling-tabs-container::-webkit-scrollbar {
-    height: 6px;
+/* Seamless Ambient Masking Overlays for Fading Ribbon Edges */
+.scrolling-tabs-container::before,
+.scrolling-tabs-container::after {
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+    top: 0;
 }
-.scrolling-tabs-container::-webkit-scrollbar-track {
-    background: transparent;
+.scrolling-tabs-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-light-sec) 0%, transparent 100%);
 }
-.scrolling-tabs-container::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-}
-[data-theme="dark"] .scrolling-tabs-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+.scrolling-tabs-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-light-sec) 0%, transparent 100%);
 }
 
 .cities-tab-ribbon {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     width: max-content;
-    padding-right: 20px; 
+}
+
+.animate-infinite-scroll {
+    animation: continuousMarqueeLoop 25s linear infinite;
+}
+
+/* Pause scroll when interacting with a city item */
+.scrolling-tabs-container:hover .animate-infinite-scroll {
+    animation-play-state: paused;
+}
+
+@keyframes continuousMarqueeLoop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 10px)); }
 }
 
 .tab-item {
-    background-color: #050505;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px 36px;
+    background-color: var(--city-bg);
+    color: var(--city-text);
+    border: 1px solid var(--city-border);
+    padding: 16px 42px;
     text-align: center;
     font-weight: 700;
     font-size: 16px;
     border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     white-space: nowrap;
+    cursor: pointer;
     transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s;
 }
 
-[data-theme="light"] .tab-item {
-    background-color: #ffffff;
-    color: #050505;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .tab-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.03);
     background-color: var(--gold) !important;
     color: #050505 !important;
-    border-color: var(--gold);
+    border-color: var(--gold) !important;
 }
 
 /* FINANCIAL SYSTEM PRESENTATION BLOCK */
@@ -539,7 +563,8 @@ section {
 }
 
 [data-theme="light"] .policy-container {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: #f8f9fa;
+    border-color: var(--border-card);
 }
 
 .policy-row {
