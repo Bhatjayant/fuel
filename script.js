@@ -2,25 +2,27 @@
 // Fuel By Willpower
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("RapidCharge Hub Loaded");
+    console.log("RapidCharge Hub Loaded with Animations");
 
-    // Fade In Animation Setup
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                entry.target.classList.add("show");
+    // Dynamic Scroll-Driven Reveal Observer (Hardware-Accelerated)
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Introduce an incremental cascading fade effect for clean list presentation
+                setTimeout(() => {
+                    entry.target.classList.add("reveal-active");
+                }, index * 40); 
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px"
     });
 
-    document.querySelectorAll(".card").forEach(card => {
-        observer.observe(card);
-    });
-
-    document.querySelectorAll(".cities div").forEach(city => {
-        observer.observe(city);
+    // Track targets across core components
+    document.querySelectorAll(".scroll-animate").forEach(element => {
+        revealObserver.observe(element);
     });
 
     // Mobile Hamburger Menu Toggle Functionality
@@ -32,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks.classList.toggle("active");
         });
 
-        // Close mobile menu when a navigation link is clicked
         document.querySelectorAll("nav ul li a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Smooth Scroll Functionality
+// Smooth Navigation Scroll Tracking
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e){
         e.preventDefault();
@@ -54,12 +55,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar Background Dynamic Opacity on Scroll
+// Dynamic Sticky Navbar Scroll States
 window.addEventListener("scroll", () => {
     const nav = document.querySelector("nav");
-    if(window.scrollY > 100){
+    if(window.scrollY > 60){
         nav.style.background = "rgba(0,0,0,0.98)";
+        nav.style.height = "95px";
     }else{
         nav.style.background = "rgba(0,0,0,0.95)";
+        nav.style.height = "110px";
     }
 });
