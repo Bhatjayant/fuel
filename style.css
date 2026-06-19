@@ -18,7 +18,7 @@ html{
 }
 
 section[id], footer[id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 100px;
 }
 
 body{
@@ -34,7 +34,7 @@ nav{
     top:0;
     left:0;
     width:100%;
-    height:90px; /* Made navbar slightly taller to accommodate a bigger logo */
+    height:100px; /* Enhanced height for clear visibility */
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -53,7 +53,7 @@ nav{
 }
 
 .nav-logo{
-    height: 60px; /* Made the top logo larger and more prominent */
+    height: 80px; /* Made the upper logo much bigger and crisp */
     width: auto;
     object-fit: contain;
 }
@@ -80,7 +80,7 @@ nav ul li a:hover{
     background: none;
     border: none;
     color: var(--white);
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
 }
 
@@ -138,7 +138,7 @@ nav ul li a:hover{
     border:2px solid var(--gold);
     border-radius:12px;
     padding:20px;
-    min-width:150px;
+    min-width:160px;
     text-align:center;
 }
 
@@ -159,7 +159,6 @@ nav ul li a:hover{
     align-items:center;
 }
 
-/* MOTIVATIONAL BOX WITH CARD DESIGN */
 .motivation-box {
     background: #141414;
     border: 2px solid #222;
@@ -248,7 +247,13 @@ nav ul li a:hover{
 .section-dark h2{
     font-size:56px;
     font-weight:900;
-    margin-bottom:40px;
+    margin-bottom:15px;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    color: #b3b3b3;
+    margin-bottom: 50px;
 }
 
 /* FEATURES */
@@ -288,37 +293,91 @@ nav ul li a:hover{
     transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-/* INCOME MODEL */
-.income{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:25px;
-    flex-wrap:wrap;
-    margin-top:40px;
+/* REVENUE MODEL CARDS */
+.income-detailed-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.income-box{
-    background:#1b1b1b;
-    border:3px solid var(--gold);
-    padding:40px;
-    border-radius:15px;
-    font-size:28px;
-    font-weight:700;
-    min-width:320px;
+.income-card {
+    background: #1b1b1b;
+    border: 2px solid #222;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: left;
+    transition: 0.3s ease;
 }
 
-.plus{
-    font-size:70px;
-    font-weight:900;
-    color:var(--gold);
+.income-card:hover {
+    border-color: var(--gold);
 }
 
-.result{
-    margin-top:40px;
-    font-size:42px;
-    font-weight:900;
-    color:var(--gold);
+.income-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.income-header .icon {
+    font-size: 32px;
+}
+
+.income-header h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.payout-stat {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 22px;
+    font-weight: 900;
+    padding: 8px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.income-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+/* POLICY CALLOUT BAR */
+.policy-callout {
+    background: rgba(255, 204, 0, 0.04);
+    border: 1px dashed rgba(255, 204, 0, 0.3);
+    border-radius: 12px;
+    max-width: 1000px;
+    margin: 40px auto 0;
+    padding: 30px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.policy-badge {
+    background: var(--red);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.policy-callout p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #b3b3b3;
 }
 
 /* FOOTER */
@@ -357,6 +416,13 @@ nav ul li a:hover{
 
 /* RESPONSIVE LAYOUTS */
 @media(max-width:1024px){
+    nav {
+        height: 90px;
+        padding: 0 30px;
+    }
+    .nav-logo {
+        height: 70px;
+    }
     .hero{
         grid-template-columns:1fr;
         text-align:center;
@@ -375,6 +441,9 @@ nav ul li a:hover{
     .cities{
         grid-template-columns:1fr 1fr;
     }
+    .income-detailed-grid {
+        grid-template-columns: 1fr;
+    }
     .hero h1{
         font-size:70px;
     }
@@ -386,7 +455,7 @@ nav ul li a:hover{
         height: 80px;
     }
     .nav-logo{
-        height: 45px;
+        height: 60px;
     }
     .menu-toggle {
         display: block;
@@ -430,6 +499,10 @@ nav ul li a:hover{
     }
     .cities{
         grid-template-columns:1fr;
+    }
+    .policy-callout {
+        flex-direction: column;
+        gap: 12px;
     }
     .price-box{
         font-size:24px;
