@@ -1,4 +1,4 @@
-// RapidCharge Hub™
+// RapidCharge Hub
 // Fuel By Willpower
 
 document.addEventListener("DOMContentLoaded", () => {
