@@ -578,6 +578,25 @@ section {
     transform: translateX(0);
 }
 
+/* BUBBLE SHAKE ENGAGEMENT ANIMATION ENGINE */
+.floating-action-dock.bubble-shaking .dock-item {
+    animation: bubbleShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Staggered execution for a smooth cascading ripple effect */
+.floating-action-dock.bubble-shaking .whatsapp-item { animation-delay: 0.0s; }
+.floating-action-dock.bubble-shaking .email-item    { animation-delay: 0.1s; }
+.floating-action-dock.bubble-shaking .website-item  { animation-delay: 0.2s; }
+
+@keyframes bubbleShake {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    15%      { transform: scale(1.12) rotate(-8deg); }
+    30%      { transform: scale(1.12) rotate(6deg); }
+    45%      { transform: scale(1.08) rotate(-4deg); }
+    60%      { transform: scale(1.05) rotate(3deg); }
+    75%      { transform: scale(1.02) rotate(-1deg); }
+}
+
 /* HARDWARE ENGINE ENGINE SYSTEM ANIMATIONS */
 .animate-fade-in {
     opacity: 0;
