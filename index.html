@@ -1,160 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RapidCharge Hub™ | Fuel By Willpower</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-    <nav>
-        <div class="logo-container">
-            <img src="fuel-logo.png" alt="Fuel By Willpower Logo" class="nav-logo">
-        </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
-            ☰
-        </button>
-        <ul id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#locations">Locations</a></li>
-            <li><a href="#income-model">Income Model</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="hero-left">
-                <h1>
-                    RAPIDCHARGE
-                    <span>HUB™</span>
-                </h1>
-                <p>India's Smart Two-Wheeler EV Charging Network</p>
-                <div class="price-box">
-                    ₹50,000 + GST
-                </div>
-                <div class="benefits">
-                    <div class="benefit">
-                        <h3>NO</h3>
-                        <p>Franchise Fee</p>
-                    </div>
-                    <div class="benefit">
-                        <h3>NO</h3>
-                        <p>Revenue Sharing on Charging</p>
-                    </div>
-                    <div class="benefit">
-                        <h3>100%</h3>
-                        <p>Your Charging Revenue</p>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="motivation-box">
-                    <div class="alert-badge">⚡ LIMITED LOCATION SLOTS</div>
-                    <h2>Be the First in Your Area!</h2>
-                    <p>The EV revolution is expanding rapidly. Secure your RapidCharge Hub franchise today and lock in high-margin passive income before your competitors beat you to it.</p>
-                    <a href="#contact" class="cta-button">Secure Your Location Now</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section-light">
-            <h2>Why RapidCharge Hub™?</h2>
-            <p class="intro">
-                RapidCharge Hub™ enables retailers, cafés, commercial establishments and property owners to generate recurring revenue through EV charging and digital advertising.
-            </p>
-        </section>
-
-        <section id="features" class="section-dark">
-            <h2>Smart Charging Technology</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>⚡ Smart Charging</h3>
-                    <p>Reliable EV charging solution.</p>
-                </div>
-                <div class="card">
-                    <h3>📱 QR Payments</h3>
-                    <p>UPI based cashless charging.</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Monitoring</h3>
-                    <p>Live dashboard access.</p>
-                </div>
-                <div class="card">
-                    <h3>📢 Advertising</h3>
-                    <p>Additional revenue stream.</p>
-                </div>
-                <div class="card">
-                    <h3>🛠 Installation</h3>
-                    <p>Professional setup support.</p>
-                </div>
-                <div class="card">
-                    <h3>🛡 Warranty</h3>
-                    <p>2 Year Support.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="locations" class="section-light">
-            <h2>Phase 1 Rollout Cities</h2>
-            <div class="cities">
-                <div>Mumbai</div>
-                <div>Pune</div>
-                <div>Nashik</div>
-                <div>Kolhapur</div>
-                <div>Belagavi</div>
-                <div>Hubballi</div>
-                <div>Bengaluru</div>
-            </div>
-        </section>
-
-        <section id="income-model" class="section-dark">
+<section id="income-model" class="section-dark">
             <h2>Dual Income Model</h2>
             <p class="section-subtitle">Transparent earnings framework engineered for host business success</p>
             
-            <div class="income-detailed-grid">
-                <div class="income-card">
-                    <div class="income-header">
-                        <span class="icon">⚡</span>
+            <div class="income-grid">
+                <!-- Charging Card -->
+                <div class="income-box-card">
+                    <div class="income-title">
+                        <span>⚡</span>
                         <h3>Charging Revenue</h3>
                     </div>
-                    <div class="payout-stat">100% OWNER</div>
-                    <p class="income-desc">Keep absolute profits from all electricity dispensed. Zero corporate cuts or franchise operational splits applied over user sessions.</p>
+                    <div class="percentage-badge">100% OWNER SHARE</div>
+                    <p>Keep absolute profits from all electricity dispensed. Zero corporate cuts or operational splits over user sessions.</p>
                 </div>
 
-                <div class="income-card">
-                    <div class="income-header">
-                        <span class="icon">📢</span>
+                <!-- Advertising Card -->
+                <div class="income-box-card">
+                    <div class="income-title">
+                        <span>📢</span>
                         <h3>Ad Revenue</h3>
                     </div>
-                    <div class="payout-stat">25% OWNER</div>
-                    <p class="income-desc">Earn passive income via on-screen brand campaigns. Advertisement receipts are distributed transparently at 75% Willpower / 25% Host Owner.</p>
+                    <div class="percentage-badge">25% OWNER SHARE</div>
+                    <p>Earn passive income via screen campaigns. Advertisement receipts are split at 75% Willpower / 25% Host Owner.</p>
                 </div>
             </div>
 
-            <div class="policy-callout">
-                <div class="policy-badge">SUPPORT BONUS</div>
-                <p>Willpower pays the deposit fee for your utility EV Meter at actuals <strong>up to a maximum extent of ₹15,000</strong>. Structural host infrastructure setups (incidental wire routing, local MCB boards, or structural accessories) remain standard owner-borne components.</p>
+            <!-- Simplified Policy Table / Bar -->
+            <div class="policy-container">
+                <div class="policy-row">
+                    <span class="policy-label type-bonus">Company Pays:</span>
+                    <span class="policy-value">EV Meter deposit at actuals, up to a maximum of <strong>₹15,000</strong>.</span>
+                </div>
+                <div class="policy-row border-top">
+                    <span class="policy-label type-owner">Owner Bears:</span>
+                    <span class="policy-value">All incidental costs (wiring, MCB switches, and installation accessories).</span>
+                </div>
             </div>
         </section>
-    </main>
-
-    <footer id="contact" class="footer">
-        <h2>RECHARGE. REFRESH. RESTART.</h2>
-        <p><strong>Willpower Mobility Pvt Ltd</strong></p>
-        <p>+91 7039196489</p>
-        <p><a href="mailto:care@worldofwillpower.com" style="color: #ffcc00; text-decoration: none;">care@worldofwillpower.com</a></p>
-        <p class="cities-footer">Ahmedabad | Pune | Mumbai | Hubballi | Bengaluru</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-
-</html>
