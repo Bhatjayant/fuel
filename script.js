@@ -1,66 +1,49 @@
-// RapidCharge Hub
-// Fuel By Willpower
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("RapidCharge Hub Loaded with Live Action Dock");
-
-    // Dynamic Scroll-Driven Reveal Observer
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add("reveal-active");
-                }, index * 40); 
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.08,
-        rootMargin: "0px 0px -40px 0px"
-    });
-
-    document.querySelectorAll(".scroll-animate").forEach(element => {
-        revealObserver.observe(element);
-    });
-
-    // Mobile Hamburger Menu Toggle Functionality
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Mobile Menu View Mechanics
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('show');
         });
 
-        document.querySelectorAll("nav ul li a").forEach(link => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
+        // Close mobile menu layout whenever a navigation target anchor gets clicked
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
             });
+        });
+
+        // Dismiss open menu automatically if click coordinates fall outside the bounding boxes
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('show');
+            }
         });
     }
-});
 
-// Smooth Navigation Scroll Tracking
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target){
-            target.scrollIntoView({
-                behavior:'smooth'
+    // 2. Performance-Optimized Scroll Intersection Observer
+    const scrollElements = document.querySelectorAll('.scroll-animate');
+
+    if ('IntersectionObserver' in window) {
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Kill observation lifecycle immediately upon completion
+                }
             });
-        }
-    });
-});
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
 
-// Dynamic Sticky Navbar Scroll States
-window.addEventListener("scroll", () => {
-    const nav = document.querySelector("nav");
-    if(window.scrollY > 60){
-        nav.style.background = "rgba(0,0,0,0.98)";
-        nav.style.height = "95px";
-    }else{
-        nav.style.background = "rgba(0,0,0,0.95)";
-        nav.style.height = "110px";
+        scrollElements.forEach(el => scrollObserver.observe(el));
+    } else {
+        // Safe fallback execution trace for Legacy browsers missing API features
+        scrollElements.forEach(el => el.classList.add('active'));
     }
 });
