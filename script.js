@@ -60,13 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Force browser reflow to instantly register style state resetting
             void floatingDock.offsetWidth;
             
-            // Apply class configuration to activate keyframe sequences
+            // Apply class configuration to activate keyframe sequences inside elements
             floatingDock.classList.add('bubble-shaking');
 
-            // Automatically clean up class handle once animation sequence finishes (900ms total window)
+            // Automatically clean up class handle once animation sequence finishes (1000ms safe window)
             setTimeout(() => {
                 floatingDock.classList.remove('bubble-shaking');
-            }, 900);
+            }, 1000);
         }
     }
 
