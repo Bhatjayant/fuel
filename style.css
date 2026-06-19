@@ -47,10 +47,16 @@ nav{
     transition: background 0.3s ease;
 }
 
-.logo-text{
-    font-size:22px;
-    font-weight:800;
-    color:var(--gold);
+.logo-container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-logo{
+    height: 45px; /* Perfect size to fit inside the 80px navbar */
+    width: auto;
+    object-fit: contain;
 }
 
 nav ul{
@@ -229,7 +235,7 @@ nav ul li a:hover{
 
 .cities div{
     background:white;
-    color: #000000; /* Fixed missing text contrast */
+    color: #000000;
     padding:25px;
     border-radius:12px;
     font-size:24px;
@@ -291,7 +297,7 @@ nav ul li a:hover{
     margin:10px 0;
 }
 
-/* ANIMATIONS (Fixed the bug breaking the hover action) */
+/* ANIMATIONS */
 .card, .cities div{
     opacity:0;
     transform:translateY(30px);
@@ -302,7 +308,6 @@ nav ul li a:hover{
     transform:translateY(0);
 }
 
-/* Safe Hover effect applied only after item reveals */
 .card.show:hover{
     transform: translateY(-8px);
 }
@@ -320,7 +325,7 @@ nav ul li a:hover{
         margin:auto auto 30px;
     }
     .benefits {
-        justify-content: center; /* Centers block layout on tablets */
+        justify-content: center;
     }
     .feature-grid{
         grid-template-columns:1fr 1fr;
@@ -337,10 +342,12 @@ nav ul li a:hover{
     nav{
         padding:0 20px;
     }
-    .menu-toggle {
-        display: block; /* Shows menu button on phones */
+    .nav-logo{
+        height: 35px; /* Slightly smaller logo for small phone displays */
     }
-    /* Functional Dropdown Mobile Menu */
+    .menu-toggle {
+        display: block;
+    }
     nav ul{
         display: none;
         flex-direction: column;
