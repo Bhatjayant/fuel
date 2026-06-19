@@ -75,6 +75,8 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
+    /* Initialize parent viewport for beautiful mathematical 3D calculations */
+    perspective: 1200px;
 }
 
 /* NAVIGATION HEADER ARCHITECTURE */
@@ -238,7 +240,7 @@ main {
     margin-bottom: 0;
 }
 
-/* UNIVERSAL SIMMERING GLOW ENGINE ON ALL CONTENT BLOCKS */
+/* UNIVERSAL SIMMERING GLOW ENGINE ON ALL CONTENT BLOCKS WITH 3D HANDLERS */
 .block-simmer-effect {
     background: linear-gradient(120deg, 
         var(--simmer-base) 25%, 
@@ -248,8 +250,21 @@ main {
         var(--simmer-base) 75%
     ) !important;
     background-size: 400% 100% !important;
-    animation: continuousSimmerTrace 5s cubic-bezier(0.25, 1, 0.5, 1) infinite, periodicPulseShadow 4s ease-in-out infinite alternate;
+    animation: continuousSimmerTrace 5s linear infinite;
     border: 1px solid var(--border-card) !important;
+    
+    /* Configures hardware accelerated layer space for cursor transformations */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, box-shadow;
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Deepen contrast shadows and highlights exclusively when cursor interacts */
+.block-simmer-effect:hover {
+    border-color: rgba(255, 204, 0, 0.45) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 204, 0, 0.08);
 }
 
 @keyframes continuousSimmerTrace {
@@ -257,27 +272,11 @@ main {
     100% { background-position: 0% 0%; }
 }
 
-@keyframes periodicPulseShadow {
-    0% {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border-color: var(--border-card);
-    }
-    100% {
-        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.05);
-        border-color: rgba(255, 204, 0, 0.2);
-    }
-}
-
 /* COMPONENT CARDS BLOCK RULES */
 .motivation-box {
     padding: 40px;
     border-radius: 16px;
     position: relative;
-    transition: transform 0.3s ease;
-}
-
-.motivation-box:hover {
-    transform: scale(1.01);
 }
 
 .alert-badge {
@@ -293,6 +292,7 @@ main {
     border-radius: 20px;
     letter-spacing: 1px;
     margin-bottom: 25px;
+    transform: translateZ(20px); /* 3D isolation layering */
 }
 
 .motivation-box h2 {
@@ -300,6 +300,7 @@ main {
     font-weight: 800;
     margin-bottom: 15px;
     line-height: 1.3;
+    transform: translateZ(15px);
 }
 
 .motivation-box p {
@@ -307,6 +308,7 @@ main {
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 30px;
+    transform: translateZ(10px);
 }
 
 .cta-button {
@@ -322,7 +324,8 @@ main {
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s;
+    transform: translateZ(25px);
+    transition: background-color 0.3s, transform 0.2s, color 0.3s;
 }
 
 [data-theme="light"] .cta-button {
@@ -333,7 +336,7 @@ main {
 .cta-button:hover {
     background-color: var(--gold) !important;
     color: #050505 !important;
-    transform: translateY(-2px);
+    transform: translateZ(30px) scale(1.02);
 }
 
 /* LAYOUT SECTION CONTAINERS */
@@ -411,12 +414,6 @@ section {
 .card {
     padding: 40px;
     border-radius: 12px;
-    transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.4s;
-}
-
-.card:hover {
-    border-color: var(--gold) !important;
-    transform: translateY(-5px);
 }
 
 .card h3 {
@@ -426,12 +423,14 @@ section {
     display: flex;
     align-items: center;
     gap: 10px;
+    transform: translateZ(15px);
 }
 
 .card p {
     color: var(--text-muted);
     font-size: 14px;
     line-height: 1.6;
+    transform: translateZ(10px);
 }
 
 /* MODERN INFINITE AUTOMATED CAROUSEL SCROLL ENGINE */
@@ -505,7 +504,7 @@ section {
     background-size: 400% 100%;
     color: var(--city-text);
     border: 1px solid var(--city-border);
-    animation: continuousSimmerTrace 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    animation: continuousSimmerTrace 4s linear infinite;
 }
 
 .tab-item:hover {
@@ -536,11 +535,6 @@ section {
 .income-box-card {
     border-radius: 16px;
     padding: 45px;
-    transition: border-color 0.3s ease, background-color 0.4s;
-}
-
-.income-box-card:hover {
-    border-color: rgba(255, 204, 0, 0.5) !important;
 }
 
 .income-title {
@@ -548,6 +542,7 @@ section {
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
+    transform: translateZ(15px);
 }
 
 .income-title span {
@@ -569,12 +564,14 @@ section {
     border-radius: 4px;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
+    transform: translateZ(20px);
 }
 
 .income-box-card p {
     color: var(--text-muted);
     font-size: 14.5px;
     line-height: 1.6;
+    transform: translateZ(10px);
 }
 
 /* POLICY PARAMETERS STRUCTURES */
@@ -590,6 +587,7 @@ section {
     grid-template-columns: 200px 1fr;
     padding: 15px 0;
     align-items: center;
+    transform: translateZ(10px);
 }
 
 .border-top {
@@ -619,7 +617,6 @@ section {
 .footer {
     text-align: center;
     padding: 80px 8% 40px;
-    transition: background-color 0.4s, border-color 0.4s;
     margin-top: 40px;
     border-left: none !important;
     border-right: none !important;
@@ -632,12 +629,14 @@ section {
     color: var(--gold);
     letter-spacing: 1px;
     margin-bottom: 25px;
+    transform: translateZ(20px);
 }
 
 .company-title {
     font-size: 16px;
     letter-spacing: 0.5px;
     margin-bottom: 8px;
+    transform: translateZ(10px);
 }
 
 .cin-number {
@@ -645,6 +644,7 @@ section {
     color: #666666;
     letter-spacing: 0.5px;
     margin-bottom: 25px;
+    transform: translateZ(5px);
 }
 
 .cities-footer {
@@ -854,5 +854,11 @@ section {
     }
     #about.block-simmer-effect {
         margin: 20px 5%;
+    }
+    
+    /* Disable tracking matrix animations on small touch devices for better execution parsing */
+    .block-simmer-effect {
+        transform: none !important;
+        transition: none !important;
     }
 }
