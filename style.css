@@ -26,6 +26,8 @@
     --city-bg: #000000;
     --city-text: #ffffff;
     --city-border: rgba(255, 255, 255, 0.15);
+    --city-simmer-glow: #111111;
+    --city-simmer-high: #222222;
 }
 
 [data-theme="light"] {
@@ -49,9 +51,11 @@
     --simmer-highlight: #e9ecef;
     
     /* Brightened Variant Mappings */
-    --city-bg: #111111;
-    --city-text: #ffffff;
-    --city-border: var(--gold);
+    --city-bg: #ffffff;
+    --city-text: #111111;
+    --city-border: #111111;
+    --city-simmer-glow: #f5f5f5;
+    --city-simmer-high: #e5e5e5;
 }
 
 * {
@@ -161,7 +165,7 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-/* HERO VIEW ENGINE Layout */
+/* HERO VIEW ENGINE LAYOUT */
 main {
     margin-top: 85px;
 }
@@ -173,6 +177,12 @@ main {
     padding: 40px 8%;
     align-items: center;
     gap: 60px;
+}
+
+.hero-left {
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid transparent;
 }
 
 .hero-left h1 {
@@ -228,17 +238,18 @@ main {
     margin-bottom: 0;
 }
 
-/* CARDS CONTINUOUS SIMMERING GLOW ENGINE */
-.simmer-effect {
+/* UNIVERSAL SIMMERING GLOW ENGINE ON ALL CONTENT BLOCKS */
+.block-simmer-effect {
     background: linear-gradient(120deg, 
-        var(--simmer-base) 30%, 
-        var(--simmer-glow) 45%, 
+        var(--simmer-base) 25%, 
+        var(--simmer-glow) 40%, 
         var(--simmer-highlight) 50%, 
-        var(--simmer-glow) 55%, 
-        var(--simmer-base) 70%
+        var(--simmer-glow) 60%, 
+        var(--simmer-base) 75%
     ) !important;
     background-size: 400% 100% !important;
-    animation: continuousSimmerTrace 4.5s cubic-bezier(0.25, 1, 0.5, 1) infinite, periodicPulseShadow 3s ease-in-out infinite alternate;
+    animation: continuousSimmerTrace 5s cubic-bezier(0.25, 1, 0.5, 1) infinite, periodicPulseShadow 4s ease-in-out infinite alternate;
+    border: 1px solid var(--border-card) !important;
 }
 
 @keyframes continuousSimmerTrace {
@@ -248,23 +259,25 @@ main {
 
 @keyframes periodicPulseShadow {
     0% {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         border-color: var(--border-card);
     }
     100% {
-        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.08);
-        border-color: rgba(255, 204, 0, 0.35);
+        box-shadow: 0 8px 30px rgba(255, 204, 0, 0.05);
+        border-color: rgba(255, 204, 0, 0.2);
     }
 }
 
 /* COMPONENT CARDS BLOCK RULES */
 .motivation-box {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-card);
     padding: 40px;
     border-radius: 16px;
     position: relative;
-    transition: background-color 0.4s, border-color 0.4s;
+    transition: transform 0.3s ease;
+}
+
+.motivation-box:hover {
+    transform: scale(1.01);
 }
 
 .alert-badge {
@@ -334,6 +347,12 @@ section {
     transition: background-color 0.4s;
 }
 
+#about.block-simmer-effect {
+    margin: 40px 8%;
+    border-radius: 16px;
+    padding: 60px 40px;
+}
+
 .section-light h2 {
     font-size: 38px;
     font-weight: 800;
@@ -351,7 +370,7 @@ section {
     margin: 15px auto 0;
 }
 
-/* COMPACT FIX FOR THE THIRD IMAGE EMPTY SPACE */
+/* COMPACT ROLLOUT WRAPPER */
 .section-compact {
     padding-top: 45px !important;
     padding-bottom: 50px !important;
@@ -390,15 +409,13 @@ section {
 }
 
 .card {
-    background-color: var(--bg-card-inner);
-    border: 1px solid var(--border-subtle);
     padding: 40px;
     border-radius: 12px;
     transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.4s;
 }
 
 .card:hover {
-    border-color: var(--gold);
+    border-color: var(--gold) !important;
     transform: translateY(-5px);
 }
 
@@ -426,7 +443,6 @@ section {
     margin-top: 25px;
 }
 
-/* Seamless Ambient Masking Overlays for Fading Ribbon Edges */
 .scrolling-tabs-container::before,
 .scrolling-tabs-container::after {
     content: "";
@@ -456,7 +472,6 @@ section {
     animation: continuousMarqueeLoop 25s linear infinite;
 }
 
-/* Pause scroll when interacting with a city item */
 .scrolling-tabs-container:hover .animate-infinite-scroll {
     animation-play-state: paused;
 }
@@ -467,23 +482,35 @@ section {
 }
 
 .tab-item {
-    background-color: var(--city-bg);
-    color: var(--city-text);
-    border: 1px solid var(--city-border);
     padding: 16px 42px;
     text-align: center;
     font-weight: 700;
     font-size: 16px;
     border-radius: 30px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     white-space: nowrap;
     cursor: pointer;
     transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s;
 }
 
+/* SPECIFIC SHIMMER TRACE LAYER FOR INTERACTION NODES */
+.city-simmer {
+    background: linear-gradient(120deg, 
+        var(--city-bg) 30%, 
+        var(--city-simmer-glow) 45%, 
+        var(--city-simmer-high) 50%, 
+        var(--city-simmer-glow) 55%, 
+        var(--city-bg) 70%
+    );
+    background-size: 400% 100%;
+    color: var(--city-text);
+    border: 1px solid var(--city-border);
+    animation: continuousSimmerTrace 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
 .tab-item:hover {
     transform: translateY(-3px) scale(1.03);
-    background-color: var(--gold) !important;
+    background: var(--gold) !important;
     color: #050505 !important;
     border-color: var(--gold) !important;
 }
@@ -507,15 +534,13 @@ section {
 }
 
 .income-box-card {
-    background-color: var(--bg-card-inner);
-    border: 1px solid var(--border-subtle);
     border-radius: 16px;
     padding: 45px;
     transition: border-color 0.3s ease, background-color 0.4s;
 }
 
 .income-box-card:hover {
-    border-color: rgba(255, 204, 0, 0.4);
+    border-color: rgba(255, 204, 0, 0.5) !important;
 }
 
 .income-title {
@@ -556,15 +581,8 @@ section {
 .policy-container {
     max-width: 1000px;
     margin: 50px auto 0;
-    background-color: rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--border-subtle);
     border-radius: 12px;
     padding: 30px 40px;
-}
-
-[data-theme="light"] .policy-container {
-    background-color: #f8f9fa;
-    border-color: var(--border-card);
 }
 
 .policy-row {
@@ -597,13 +615,15 @@ section {
     color: var(--gold);
 }
 
-/* FOOTER ARCHITECTURE */
+/* FOOTER ARCHITECTURE WITH COMPATIBLE BACKGROUND EFFECTS */
 .footer {
-    background-color: var(--bg-main);
-    border-top: 1px solid var(--border-subtle);
     text-align: center;
     padding: 80px 8% 40px;
     transition: background-color 0.4s, border-color 0.4s;
+    margin-top: 40px;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
 .footer h2 {
@@ -811,7 +831,7 @@ section {
         flex-direction: column;
         padding: 30px;
         gap: 20px;
-        text-align: center;
+        text-transform: none;
         display: none;
     }
     nav ul.show {
@@ -831,5 +851,8 @@ section {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+    }
+    #about.block-simmer-effect {
+        margin: 20px 5%;
     }
 }
