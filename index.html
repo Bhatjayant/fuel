@@ -1,139 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RapidCharge Hub™ | Fuel By Willpower</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
+    <title>2W EV RapidCharge Hub Prospectus</title>
+    <style>
+        :root {
+            --bg-main: #0b0b0c;
+            --bg-card: #141416;
+            --border-color: #232326;
+            --neon-green: #00ff66;
+            --neon-orange: #ff3300;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            position: relative;
+            padding-bottom: 30px;
+            border-bottom: 1px solid linear-gradient(90deg, var(--neon-orange) 0%, rgba(255,255,255,0.05) 100%);
+            margin-bottom: 40px;
+        }
+
+        .meta-tag {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            color: var(--neon-orange);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 .num {
+            color: var(--neon-orange);
+            font-family: monospace;
+            margin-right: 15px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 2.5rem; }
+        }
+
+        /* Interactive ROI Card */
+        .roi-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--neon-green);
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .slider-group {
+            margin: 25px 0;
+        }
+
+        .slider-group label {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .roi-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            background: #2a2a2e;
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .roi-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            cursor: pointer;
+        }
+
+        .roi-display {
+            display: flex;
+            justify-content: space-between;
+            background: #00ff6610;
+            border: 1px solid #00ff6633;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .roi-metric {
+            flex: 1;
+        }
+
+        .roi-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--neon-green);
+        }
+
+        /* Owner Checklist Card */
+        .checklist-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--neon-orange);
+            padding: 30px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .check-item input {
+            margin-right: 15px;
+            margin-top: 5px;
+            transform: scale(1.2);
+            accent-color: var(--neon-orange);
+        }
+
+        .check-text strong {
+            display: block;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        .check-text span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Specs Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .spec-table th {
+            text-align: left;
+            padding: 15px;
+            background: #1a1a1c;
+            font-family: monospace;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .spec-title {
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--neon-orange) 0%, #b32400 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 30px;
+            transition: opacity 0.2s;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
 <body>
 
-    <nav>
-        <div class="logo-text">
-            FUEL BY WILLPOWER™
+    <div class="container">
+        <header>
+            <span class="meta-tag">[ Interactive Portal ]</span>
+            <h1>2W EV<br><span>RAPIDCHARGE HUB</span></h1>
+            <div class="subtitle">The Autonomous Real Estate Monetization Engine</div>
+        </header>
+
+        <div class="grid-2">
+            <!-- Left: ROI Simulator -->
+            <div>
+                <h2><span class="num">01.</span>Live Yield Estimator</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    Adjust the parameters below to calculate your location's projected annual revenue streams derived from charging utilization and secondary display panel leasing.
+                </p>
+                <div class="roi-box">
+                    <div class="slider-group">
+                        <label>Daily Charging Sessions: <span id="sessions-val">15</span></label>
+                        <input type="range" min="5" max="50" value="15" class="roi-slider" id="sessions-slider">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label>Monthly Ad Panel Leasing (₹): <span id="ad-val">5,000</span></label>
+                        <input type="range" min="0" max="15000" step="500" value="5000" class="roi-slider" id="ad-slider">
+                    </div>
+
+                    <div class="roi-display">
+                        <div class="roi-metric">
+                            <div class="roi-val" id="revenue-display">₹1,42,000</div>
+                            <div class="roi-label" style="margin-top: 5px;">Est. Gross Annual Revenue</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Owner Responsibilities Checklist -->
+            <div>
+                <h2><span class="num">02.</span>Site Prerequisites</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    To initiate deployment clearance, property owners must check off and confirm compliance with all three core infrastructure requirements.
+                </p>
+                <div class="checklist-box">
+                    <label class="check-item">
+                        <input type="checkbox" id="check1">
+                        <div class="check-text">
+                            <strong>Dedicated EV Meter</strong>
+                            <span>Owner must secure local electrical board clearance and provisioning for a dedicated standalone EV meter.</span>
+                        </div>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check2">
+                        <div class="check-text">
+                            <strong>4 kW Grid Connection</strong>
+                            <span>Ensure active power availability of a minimum 4 kW electrical load limit at the designated premises.</span>
+                        </div>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check3">
+                        <div class="check-text">
+                            <strong>Compliant Cabling Setup</strong>
+                            <span>Standard structural wiring must be extended from the meter panel cleanly up to the chosen tower mounting space.</span>
+                        </div>
+                    </label>
+                </div>
+                <a href="mailto:care@worldofwillpower.com?subject=2W%20EV%20RapidCharge%20Hub%20Onboarding%20Clearance" class="cta-btn" id="cta-link">Submit Site Clearance Request</a>
+            </div>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
-            ☰
-        </button>
-        <ul id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#locations">Locations</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <main>
-        <section class="hero">
-            <div class="hero-left">
-                <img src="fuel-logo.png" class="main-logo" alt="Fuel Logo">
-                <h1>
-                    RAPIDCHARGE
-                    <span>HUB™</span>
-                </h1>
-                <p>India's Smart Two-Wheeler EV Charging Network</p>
-                <div class="price-box">
-                    ₹50,000 + GST
-                </div>
-                <div class="benefits">
-                    <div class="benefit">
-                        <h3>NO</h3>
-                        <p>Franchise Fee</p>
-                    </div>
-                    <div class="benefit">
-                        <h3>NO</h3>
-                        <p>Revenue Sharing</p>
-                    </div>
-                    <div class="benefit">
-                        <h3>100%</h3>
-                        <p>Your Revenue</p>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-right">
-                <img src="rapidcharge-hub.png" alt="RapidCharge Hub Station">
-            </div>
-        </section>
+        <!-- Infrastructure Deliverables -->
+        <h2><span class="num">03.</span>Ecosystem Infrastructure Specs</h2>
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Ecosystem Layer</th>
+                    <th>System Deliverables & Specifications</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="spec-title">The Monolith Asset</td>
+                    <td><strong>2W EV RapidCharge Hub™ Tower:</strong> Features a clean 11 Ft Vertical Height × 4 Ft Width layout footprint. Houses the integrated digital advertising panel to maximize visual command and generate secondary local ad revenue streams.</td>
+                </tr>
+                <tr>
+                    <td class="spec-title">The Power Engine</td>
+                    <td><strong>Fuel by Willpower™ Smart AC Charger:</strong> Optimized 3.3 kW hardware footprint designed to supply rapid, safe electrical top-ups tailored explicitly for high-turnover electric two-wheelers.</td>
+                </tr>
+                <tr>
+                    <td class="spec-title">The Central OS</td>
+                    <td><strong>Charging Management Software (CMS):</strong> Includes a 24-Month single-user platform license out-of-the-box. Provides secure payment gateways, session telemetry data, and immediate cloud tracking dashboard.</td>
+                </tr>
+                <tr>
+                    <td class="spec-title">Turnkey Deliverables</td>
+                    <td>Complete logistics infrastructure: Insured transport anywhere across India, comprehensive physical deployment, commissioning, a 2-Year Service Warranty, and continuous remote technician support lines.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <section id="about" class="section-light">
-            <h2>Why RapidCharge Hub™?</h2>
-            <p class="intro">
-                RapidCharge Hub™ enables retailers, cafés, commercial establishments and property owners to generate recurring revenue through EV charging and digital advertising.
-            </p>
-        </section>
+    <script>
+        const sessionsSlider = document.getElementById('sessions-slider');
+        const adSlider = document.getElementById('ad-slider');
+        const sessionsVal = document.getElementById('sessions-val');
+        const adVal = document.getElementById('ad-val');
+        const revenueDisplay = document.getElementById('revenue-display');
 
-        <section id="features" class="section-dark">
-            <h2>Smart Charging Technology</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>⚡ Smart Charging</h3>
-                    <p>Reliable EV charging solution.</p>
-                </div>
-                <div class="card">
-                    <h3>📱 QR Payments</h3>
-                    <p>UPI based cashless charging.</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Monitoring</h3>
-                    <p>Live dashboard access.</p>
-                </div>
-                <div class="card">
-                    <h3>📢 Advertising</h3>
-                    <p>Additional revenue stream.</p>
-                </div>
-                <div class="card">
-                    <h3>🛠 Installation</h3>
-                    <p>Professional setup support.</p>
-                </div>
-                <div class="card">
-                    <h3>🛡 Warranty</h3>
-                    <p>2 Year Support.</p>
-                </div>
-            </div>
-        </section>
+        function calculateRevenue() {
+            const sessions = parseInt(sessionsSlider.value);
+            const monthlyAd = parseInt(adSlider.value);
+            
+            sessionsVal.innerText = sessions;
+            adVal.innerText = monthlyAd.toLocaleString('en-IN');
 
-        <section id="locations" class="section-light">
-            <h2>Phase 1 Rollout Cities</h2>
-            <div class="cities">
-                <div>Mumbai</div>
-                <div>Pune</div>
-                <div>Nashik</div>
-                <div>Kolhapur</div>
-                <div>Belagavi</div>
-                <div>Hubballi</div>
-                <div>Bengaluru</div>
-            </div>
-        </section>
+            // Estimated Net Margin per Session = ~₹15 (Markup margin over base power units)
+            const annualChargingRev = sessions * 15 * 365;
+            const annualAdRev = monthlyAd * 12;
+            const totalAnnualGross = annualChargingRev + annualAdRev;
 
-        <section class="section-dark">
-            <h2>Dual Income Opportunity</h2>
-            <div class="income">
-                <div class="income-box">
-                    ⚡ Charging Revenue
-                </div>
-                <div class="plus">+</div>
-                <div class="income-box">
-                    📢 Advertising Revenue
-                </div>
-            </div>
-            <h3 class="result">= Dual Income Model</h3>
-        </section>
-    </main>
+            revenueDisplay.innerText = '₹' + totalAnnualGross.toLocaleString('en-IN');
+        }
 
-    <footer id="contact" class="footer">
-        <h2>RECHARGE. REFRESH. RESTART.</h2>
-        <p><strong>Willpower Mobility Pvt Ltd</strong></p>
-        <p>+91 7039196489</p>
-        <p><a href="mailto:care@worldofwillpower.com" style="color: #ffcc00; text-decoration: none;">care@worldofwillpower.com</a></p>
-        <p class="cities-footer">Ahmedabad | Pune | Mumbai | Hubballi | Bengaluru</p>
-    </footer>
-
-    <script src="script.js"></script>
+        sessionsSlider.addEventListener('input', calculateRevenue);
+        adSlider.addEventListener('input', calculateRevenue);
+        
+        // Initial Calculation Trigger
+        calculateRevenue();
+    </script>
 </body>
-
 </html>
