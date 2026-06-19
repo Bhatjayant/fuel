@@ -30,7 +30,7 @@ body{
     width: 100%;
 }
 
-/* NAVBAR */
+/* NAVBAR & LOGO ANIMATION */
 nav{
     position:fixed;
     top:0;
@@ -45,7 +45,7 @@ nav{
     backdrop-filter:blur(10px);
     z-index:999;
     border-bottom:1px solid rgba(255,255,255,.08);
-    transition: background 0.3s ease;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .logo-container{
@@ -58,6 +58,11 @@ nav{
     height: 85px; 
     width: auto;
     object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
 }
 
 nav ul{
@@ -70,11 +75,28 @@ nav ul li a{
     text-decoration:none;
     color:white;
     font-weight:600;
-    transition:.3s;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
 }
 
 nav ul li a:hover{
     color:var(--gold);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
 }
 
 .menu-toggle {
@@ -86,7 +108,27 @@ nav ul li a:hover{
     cursor: pointer;
 }
 
-/* HERO */
+/* ENTRANCE KEYFRAMES */
+@keyframes fadeInExplode {
+    0% { opacity: 0; transform: scale(0.97) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideUpHero {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeInExplode 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+    animation: slideUpHero 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s var(--white) backwards;
+    animation-fill-mode: forwards;
+}
+
+/* HERO INITIALIZATION */
 .hero{
     min-height:100vh;
     display:grid;
@@ -127,6 +169,12 @@ nav ul li a:hover{
     border-radius:12px;
     font-size:32px;
     font-weight:800;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(216, 0, 28, 0.3);
 }
 
 .benefits{
@@ -144,6 +192,12 @@ nav ul li a:hover{
     flex: 1;
     min-width:150px;
     text-align:center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.benefit:hover {
+    transform: translateY(-4px);
+    background: #222222;
 }
 
 .benefit h3{
@@ -174,6 +228,11 @@ nav ul li a:hover{
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     width: 100%;
     max-width: 440px;
+    transition: transform 0.3s ease;
+}
+
+.motivation-box:hover {
+    transform: scale(1.01);
 }
 
 .alert-badge {
@@ -214,12 +273,25 @@ nav ul li a:hover{
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
 }
 
 .cta-button:hover {
     background: #e6b800;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(255, 204, 0, 0.2);
+}
+
+/* GENERAL SCROLL-DRIVEN ANIMATION STYLING */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-animate.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* LIGHT SECTION */
@@ -263,7 +335,7 @@ nav ul li a:hover{
     margin-bottom: 50px;
 }
 
-/* FEATURES */
+/* FEATURES ACCELERATED HOVER HEROES */
 .feature-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -276,10 +348,16 @@ nav ul li a:hover{
     padding:30px;
     border-radius:15px;
     border-top:6px solid var(--gold);
-    transition: transform 0.4s ease, opacity 0.8s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, opacity 0.8s ease;
 }
 
-/* CITIES */
+.card:hover {
+    transform: translateY(-8px);
+    border-top-color: var(--white);
+    background: #222222;
+}
+
+/* CITIES ARCHITECTURE */
 .cities{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -296,11 +374,16 @@ nav ul li a:hover{
     font-size:22px;
     font-weight:700;
     border-left:6px solid var(--gold);
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    transition: transform 0.8s ease, opacity 0.8s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, opacity 0.8s ease;
 }
 
-/* INCOME MODEL SECTION */
+.cities div:hover {
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* INCOME MODEL SECTION INTERACTIVE HOVER TRACKS */
 #income-model {
     padding: 100px 40px;
     background: #111111;
@@ -326,12 +409,13 @@ nav ul li a:hover{
     max-width: 500px;
     text-align: left;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .income-box-card:hover {
     border-color: var(--gold);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(255, 204, 0, 0.08);
 }
 
 .income-title {
@@ -379,6 +463,11 @@ nav ul li a:hover{
     margin: 40px auto 0;
     padding: 25px;
     text-align: left;
+    transition: border-color 0.3s ease;
+}
+
+.policy-container:hover {
+    border-color: #333;
 }
 
 .policy-row {
@@ -464,9 +553,11 @@ nav ul li a:hover{
     color: var(--gold);
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.2s ease;
 }
 
 .footer p.contact-method a:hover {
+    color: #e6b800;
     text-decoration: underline;
 }
 
@@ -477,21 +568,6 @@ nav ul li a:hover{
     color: #666666 !important;
     letter-spacing: 1px;
     text-transform: uppercase;
-}
-
-/* ANIMATIONS */
-.card, .cities div{
-    opacity:0;
-    transform:translateY(30px);
-}
-
-.card.show, .cities div.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.card.show:hover{
-    transform: translateY(-8px);
 }
 
 /* RESPONSIVE LAYOUTS */
