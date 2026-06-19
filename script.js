@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (floatingDock) {
             floatingDock.classList.remove('bubble-shaking');
             
-            // Force browser flow reflow execution trace
+            // Force browser layout reflow computation
             void floatingDock.offsetWidth;
             
             floatingDock.classList.add('bubble-shaking');
