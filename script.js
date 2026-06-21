@@ -102,10 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const relativeToCenterX = absoluteX - (layoutDimensions.width / 2);
                 const relativeToCenterY = absoluteY - (layoutDimensions.height / 2);
                 
-                const pitchRotationX = (relativeToCenterY / (layoutDimensions.height / 2)) * -8;
-                const rollRotationY = (relativeToCenterX / (layoutDimensions.width / 2)) * 8;
+                // Convert coordinates into micro-tilt vectors
+                const pitchRotationX = (relativeToCenterY / (layoutDimensions.height / 2)) * -6;
+                const rollRotationY = (relativeToCenterX / (layoutDimensions.width / 2)) * 6;
                 
-                block.style.transform = `rotateX(${pitchRotationX.toFixed(2)}deg) rotateY(${rollRotationY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+                block.style.transform = `rotateX(${pitchRotationX.toFixed(2)}deg) rotateY(${rollRotationY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
             });
 
             block.addEventListener('mouseleave', () => {
