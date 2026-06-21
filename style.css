@@ -538,3 +538,11 @@ section h2 { font-size: 42px; font-weight: 900; text-align: center; margin-botto
     section { padding: 70px 6%; }
     .block-simmer-effect { transform: none !important; transition: none !important; }
 }
+/* This usually does the trick for any standard header setup */
+.logo img, 
+nav img,
+.brand img {
+    height: 80px !important; /* Increase this number to whatever size you want */
+    width: auto !important;
+    max-height: none !important;
+}
