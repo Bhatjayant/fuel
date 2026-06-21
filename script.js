@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Light/Dark Theme Switch Engine Controller
+    // 1. Dark/Light Active Engine
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const rootHtml = document.documentElement;
 
@@ -11,13 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.addEventListener('click', () => {
             const activeTheme = rootHtml.getAttribute('data-theme');
             const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
-            
             rootHtml.setAttribute('data-theme', targetTheme);
             localStorage.setItem('theme', targetTheme);
         });
     }
 
-    // 2. Mobile Menu View Mechanics
+    // 2. Fully Restored Mobile Drawer Controls
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -27,12 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('show');
         });
 
+        // Close when a nav item link is clicked
         document.querySelectorAll('#navLinks a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('show');
             });
         });
 
+        // Close on blank clicks outside of container area
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
                 navLinks.classList.remove('show');
@@ -40,73 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Optimized Scroll Intersection Observer
-    const scrollElements = document.querySelectorAll('.scroll-animate');
-
-    if ('IntersectionObserver' in window) {
-        const scrollObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.12,
-            rootMargin: '0px 0px -40px 0px'
-        });
-
-        scrollElements.forEach(el => scrollObserver.observe(el));
-    } else {
-        scrollElements.forEach(el => el.classList.add('active'));
-    }
-
-    // 4. Staggered Eager Reaction Animation Logic for Contact Hooks
-    const contactNavLink = document.getElementById('contactNavLink');
-    const heroCtaButton = document.getElementById('heroCtaButton');
-    const floatingDock = document.getElementById('floatingDock');
-
-    function triggerDockBubbleEffect() {
-        if (floatingDock) {
-            floatingDock.classList.remove('bubble-shaking');
-            
-            // Force browser layout reflow computation
-            void floatingDock.offsetWidth;
-            
-            floatingDock.classList.add('bubble-shaking');
-
-            setTimeout(() => {
-                floatingDock.classList.remove('bubble-shaking');
-            }, 1500);
-        }
-    }
-
-    if (contactNavLink) {
-        contactNavLink.addEventListener('click', triggerDockBubbleEffect);
-    }
-    if (heroCtaButton) {
-        heroCtaButton.addEventListener('click', triggerDockBubbleEffect);
-    }
-
-    // 5. Hardware Accelerated 3D Cursor Tracking Matrix Engine
+    // 3. Hardware Accelerated 3D Coordinate Track Matrix Engine
     const dynamicTiltBlocks = document.querySelectorAll('[data-tilt-block]');
 
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
         dynamicTiltBlocks.forEach(block => {
             block.addEventListener('mousemove', (e) => {
-                const layoutDimensions = block.getBoundingClientRect();
+                const dimensions = block.getBoundingClientRect();
+                const absoluteX = e.clientX - dimensions.left;
+                const absoluteY = e.clientY - dimensions.top;
                 
-                const absoluteX = e.clientX - layoutDimensions.left;
-                const absoluteY = e.clientY - layoutDimensions.top;
+                const relativeToCenterX = absoluteX - (dimensions.width / 2);
+                const relativeToCenterY = absoluteY - (dimensions.height / 2);
                 
-                const relativeToCenterX = absoluteX - (layoutDimensions.width / 2);
-                const relativeToCenterY = absoluteY - (layoutDimensions.height / 2);
+                const pitchRotationX = (relativeToCenterY / (dimensions.height / 2)) * -5;
+                const rollRotationY = (relativeToCenterX / (dimensions.width / 2)) * 5;
                 
-                // Convert coordinates into micro-tilt vectors
-                const pitchRotationX = (relativeToCenterY / (layoutDimensions.height / 2)) * -6;
-                const rollRotationY = (relativeToCenterX / (layoutDimensions.width / 2)) * 6;
-                
-                block.style.transform = `rotateX(${pitchRotationX.toFixed(2)}deg) rotateY(${rollRotationY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+                block.style.transform = `rotateX(${pitchRotationX.toFixed(2)}deg) rotateY(${rollRotationY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
             });
 
             block.addEventListener('mouseleave', () => {
