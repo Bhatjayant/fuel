@@ -1,24 +1,23 @@
-/* PREMIUM TECH DESIGN TOKENS */
+/* ==========================================================================
+   PREMIUM TECH DESIGN SYSTEM & VARIABLES
+   ========================================================================== */
 :root {
     --gold: #ffcc00;
-    --gold-glow: rgba(255, 204, 0, 0.35);
+    --gold-glow: rgba(255, 204, 0, 0.3);
     --red: #e63946;
     
-    /* Dark Theme - Cyber/Luxury Tech Spec */
+    /* Cyber/Luxury Tech Specs - High Contrast Dark Mode */
     --bg-main: #0a0a0c;
     --bg-nav: rgba(10, 10, 12, 0.85);
     --bg-card: rgba(20, 20, 25, 0.6);
-    --bg-card-inner: #121216;
     --bg-light-sec: #0f0f13;
     --text-primary: #ffffff;
     --text-inverse: #000000;
     --text-muted: #8e8e93;
     --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-card: rgba(255, 255, 255, 0.08);
-    --dock-bg: #16161a;
-    --dock-border: #2c2c35;
+    --border-card: rgba(255, 255, 255, 0.09);
     
-    /* Smooth Animation Constants */
+    /* System Animation Constant */
     --transition-fluid: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -26,15 +25,12 @@
     --bg-main: #f5f5f7;
     --bg-nav: rgba(245, 245, 247, 0.85);
     --bg-card: rgba(255, 255, 255, 0.65);
-    --bg-card-inner: #ffffff;
     --bg-light-sec: #ffffff;
     --text-primary: #1d1d1f;
     --text-inverse: #ffffff;
     --text-muted: #6e6e73;
     --border-subtle: rgba(0, 0, 0, 0.06);
     --border-card: rgba(0, 0, 0, 0.08);
-    --dock-bg: #ffffff;
-    --dock-border: #d2d2d7;
 }
 
 * {
@@ -56,24 +52,25 @@ body {
     transition: background-color 0.5s var(--transition-fluid), color 0.5s var(--transition-fluid);
 }
 
-/* PREMIUM BLURRED FLOATING NAVIGATION */
+/* ==========================================================================
+   NAVIGATION BAR (FLOATING GLASSMORPHISM)
+   ========================================================================== */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 8%;
+    padding: 18px 6%;
     background-color: var(--bg-nav);
     position: fixed;
-    width: 92%;
+    width: 90%;
     top: 20px;
-    left: 4%;
+    left: 5%;
     border-radius: 16px;
     z-index: 999;
     border: 1px solid var(--border-subtle);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s var(--transition-fluid);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .logo-container {
@@ -82,7 +79,7 @@ nav {
 }
 
 .nav-logo {
-    height: 40px;
+    height: 38px;
     width: auto;
     filter: drop-shadow(0 2px 8px rgba(255,204,0,0.2));
 }
@@ -96,7 +93,7 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 35px;
 }
 
 nav ul li a {
@@ -155,7 +152,9 @@ nav ul li a:hover::after {
 [data-theme="light"] .icon-sun { display: none; }
 [data-theme="light"] .icon-moon { display: block; }
 
-/* MAIN DISPLAY WRAPPER WITH MODERN ENTRANCE ANIMATION */
+/* ==========================================================================
+   MAIN CONTENT & HERO SECTIONS
+   ========================================================================== */
 main {
     margin-top: 140px;
     animation: sceneEntrance 1.2s var(--transition-fluid) forwards;
@@ -166,22 +165,16 @@ main {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* HERO GRID - IMMERSIVE & WELL-BALANCED */
 .hero {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     padding: 40px 8% 80px;
     align-items: center;
-    gap: 50px;
-}
-
-.hero-left {
-    display: flex;
-    flex-direction: column;
+    gap: 60px;
 }
 
 .hero-left h1 {
-    font-size: 68px;
+    font-size: 64px;
     font-weight: 900;
     letter-spacing: -2.5px;
     line-height: 1.05;
@@ -203,7 +196,6 @@ main {
 
 .price-box {
     display: inline-block;
-    align-self: flex-start;
     background: linear-gradient(135deg, var(--gold) 0%, #ffaa00 100%);
     color: var(--text-inverse);
     font-size: 34px;
@@ -242,7 +234,9 @@ main {
     font-weight: 600;
 }
 
-/* HIGH-END IMAGE DISPLAY SHOWCASE */
+/* ==========================================================================
+   IMMERSIVE KIOSK MEDIA COMPONENT
+   ========================================================================== */
 .hero-right {
     display: flex;
     flex-direction: column;
@@ -251,14 +245,14 @@ main {
 
 .hero-image-showcase {
     border-radius: 24px;
-    padding: 20px;
+    padding: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 80%), var(--bg-card);
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 85%), var(--bg-card);
     border: 1px solid var(--border-card);
     backdrop-filter: blur(10px);
-    height: 560px;
+    height: 580px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0,0,0,0.4);
@@ -268,7 +262,7 @@ main {
     content: '';
     position: absolute;
     top: -50%; left: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(255,204,0,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255,204,0,0.05) 0%, transparent 60%);
     pointer-events: none;
 }
 
@@ -276,16 +270,18 @@ main {
     width: auto;
     height: 95%;
     object-fit: contain;
-    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.6));
-    transition: transform 0.5s var(--transition-fluid), filter 0.5s ease;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
+    transition: transform 0.6s var(--transition-fluid), filter 0.6s ease;
 }
 
 .hero-image-showcase:hover .kiosk-display-asset {
-    transform: scale(1.04) translateY(-5px);
-    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(255,204,0,0.1));
+    transform: scale(1.04) translateY(-8px);
+    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.7)) drop-shadow(0 0 25px rgba(255,204,0,0.15));
 }
 
-/* PREMIUM PREMIUM INTERACTIVE BOXES (GLASSMORPHISM) */
+/* ==========================================================================
+   THE SHIMMER LAYER (GLASSMORPHISM CONTROLLERS)
+   ========================================================================== */
 .block-simmer-effect {
     background: var(--bg-card) !important;
     backdrop-filter: blur(16px);
@@ -295,13 +291,14 @@ main {
     transition: all 0.4s var(--transition-fluid);
 }
 
+/* Subtle glass highlight edge */
 .block-simmer-effect::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(to bottom right, rgba(255,255,255,0.1), transparent 50%, rgba(255,255,255,0.02));
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.12), transparent 50%, rgba(255,255,255,0.02));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -310,13 +307,13 @@ main {
 }
 
 .block-simmer-effect:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 204, 0, 0.4) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 204, 0, 0.08);
+    transform: translateY(-5px);
+    border-color: rgba(255, 204, 0, 0.35) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 204, 0, 0.05);
 }
 
 .motivation-box {
-    padding: 40px;
+    padding: 45px;
     border-radius: 24px;
 }
 
@@ -325,7 +322,7 @@ main {
     align-items: center;
     gap: 8px;
     background-color: rgba(230, 57, 70, 0.12);
-    border: 1px solid rgba(230, 57, 70, 0.3);
+    border: 1px solid rgba(230, 57, 70, 0.25);
     color: var(--red);
     font-size: 11px;
     font-weight: 800;
@@ -350,7 +347,6 @@ main {
     margin-bottom: 30px;
 }
 
-/* HOVER REFLEX BUTTONS */
 .cta-button {
     display: block;
     width: 100%;
@@ -373,9 +369,11 @@ main {
     box-shadow: 0 10px 25px var(--gold-glow);
 }
 
-/* SECTION ARCHITECTURE - CRISP AND STRUCTURALLY TIGHT */
+/* ==========================================================================
+   GLOBAL SECTION GEOMETRY
+   ========================================================================== */
 section {
-    padding: 100px 8%;
+    padding: 90px 8%;
 }
 
 .section-light {
@@ -386,9 +384,8 @@ section {
     background-color: var(--bg-main);
 }
 
-/* MODERN HEADINGS WITH UNDERLINES DITCHED FOR CLEAN ACCENTS */
 section h2 {
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 900;
     text-align: center;
     letter-spacing: -1.5px;
@@ -396,9 +393,9 @@ section h2 {
 }
 
 #about.block-simmer-effect {
-    margin: 20px 8% 60px;
+    margin: 20px 8% 40px;
     border-radius: 24px;
-    padding: 70px 50px;
+    padding: 65px 50px;
     text-align: center;
 }
 
@@ -407,12 +404,13 @@ section h2 {
     margin: 0 auto;
     font-size: 24px;
     font-weight: 600;
-    line-height: 1.5;
+    line-height: 1.55;
     letter-spacing: -0.5px;
-    color: var(--text-primary);
 }
 
-/* FEATURE SECTIONS GRID */
+/* ==========================================================================
+   FEATURE DISPLAY MODALS
+   ========================================================================== */
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -440,20 +438,23 @@ section h2 {
     font-weight: 500;
 }
 
-/* SMOOTH INFINITE MARQUEE STRIP */
+/* ==========================================================================
+   INFINITE TICKER STRIP (CITY SELECTION DISPLAY)
+   ========================================================================== */
 .scrolling-tabs-container {
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 25px 0;
+    padding: 20px 0;
 }
 
+/* Masked smooth edge gradient */
 .scrolling-tabs-container::before,
 .scrolling-tabs-container::after {
     content: "";
     height: 100%;
     position: absolute;
-    width: 150px;
+    width: 180px;
     z-index: 2;
     pointer-events: none;
     top: 0;
@@ -497,7 +498,9 @@ section h2 {
     box-shadow: 0 8px 20px var(--gold-glow);
 }
 
-/* FINANCIALS & EARNINGS SPECIFICATION GRID */
+/* ==========================================================================
+   FINANCIAL MODELS & DATA STRUCTURES
+   ========================================================================== */
 .income-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -545,7 +548,7 @@ section h2 {
     max-width: 1200px;
     margin: 50px auto 0;
     border-radius: 20px;
-    padding: 15px 40px;
+    padding: 10px 40px;
     background: rgba(255,255,255,0.01);
     border: 1px solid var(--border-subtle);
 }
@@ -577,7 +580,9 @@ section h2 {
     font-weight: 500;
 }
 
-/* PREMIUM STATEMENT FOOTER */
+/* ==========================================================================
+   STATEMENT FOOTER TERMINAL
+   ========================================================================== */
 .footer {
     text-align: center;
     padding: 100px 8% 40px;
@@ -638,7 +643,9 @@ section h2 {
 
 .footer-legal-blocks a:hover { color: var(--text-primary); }
 
-/* FLOATING INTERACTION GLASS DOCK */
+/* ==========================================================================
+   FLOATING INTERACTION UTILITY DOCK
+   ========================================================================== */
 .floating-action-dock {
     position: fixed;
     right: 30px;
@@ -706,10 +713,12 @@ section h2 {
     transform: translateX(0);
 }
 
-/* MASTER RESPONSIVE BREAKPOINTS */
+/* ==========================================================================
+   MASTER RESPONSIVE BREAKPOINTS
+   ========================================================================== */
 @media (max-width: 1200px) {
-    .hero-left h1 { font-size: 56px; }
-    .hero-image-showcase { height: 480px; }
+    .hero-left h1 { font-size: 54px; }
+    .hero-image-showcase { height: 500px; }
 }
 
 @media (max-width: 1024px) {
@@ -721,12 +730,12 @@ section h2 {
 }
 
 @media (max-width: 768px) {
-    nav { width: 94%; left: 3%; top: 10px; padding: 15px 20px; }
+    nav { width: 92%; left: 4%; top: 10px; padding: 15px 20px; }
     main { margin-top: 110px; }
-    .hero-left h1 { font-size: 42px; }
+    .hero-left h1 { font-size: 40px; }
     .feature-grid, .income-grid { grid-template-columns: 1fr; }
     .policy-row { grid-template-columns: 1fr; gap: 8px; }
     .footer-legal-blocks { flex-direction: column; gap: 20px; text-align: center; }
-    #about.block-simmer-effect { margin: 10px 4% 40px; padding: 45px 25px; }
+    #about.block-simmer-effect { margin: 10px 4% 30px; padding: 45px 25px; }
     section { padding: 70px 6%; }
 }
